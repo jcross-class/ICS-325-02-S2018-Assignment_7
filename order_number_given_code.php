@@ -21,10 +21,12 @@ if ($next_order_number === false) {
 }
 // display the order number NOTE: You should display the order number with the rest of the
 // order details
-echo $order_num;
+echo $next_order_number;
 // Truncate the file to 0 size.  This deletes everything in the file.
 ftruncate($next_order_number_count_file, 0);
+// rewind the file pointer to the very start of the file
+rewind($next_order_number_count_file);
 // write out the next order number to use by incrementing the one we just read in
-fputs($next_order_number_count_file, ++$next_order_number);
+fputs($next_order_number_count_file, $next_order_number + 1);
 // close the file
 fclose($next_order_number_count_file);
